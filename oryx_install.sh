@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.oryxcoin'
 COIN_DAEMON='oryxcoind'
 COIN_CLI='oryxcoin-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/oryxian/oryxcoin-resources/releases/download/1.0.0/oryxcoin-linux-cli-1-0-0.tar.gz'
+COIN_TGZ='https://github.com/oryxian/oryxcoin-resources/releases/download/1.0.1/oryxcoin-linux-cli-1-0-1.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='Oryx'
 COIN_PORT=5757
@@ -27,6 +27,7 @@ function download_node() {
   compile_error
   tar xvzf $COIN_ZIP >/dev/null 2>&1
   chmod +x $COIN_DAEMON $COIN_CLI >/dev/null 2>&1
+  chown root: $COIN_DAEMON $COIN_CLI >/dev/null 2>&1
   cp $COIN_DAEMON $COIN_CLI $COIN_PATH
   cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
